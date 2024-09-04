@@ -3,6 +3,13 @@
 	export let isChecked = false;
 </script>
 
+{label}
+
+<label class="switch">
+	<input type="checkbox" bind:checked={isChecked} />
+	<span class="slider round"></span>
+</label>
+
 <style>
 	.switch {
 		position: relative;
@@ -25,24 +32,24 @@
 		right: 0;
 		bottom: 0;
 		background-color: #ccc;
-		transition: .4s;
+		transition: 0.4s;
 		border-radius: 17px;
 	}
 
 	.slider:before {
 		position: absolute;
-		content: "";
+		content: '';
 		height: 13px;
 		width: 13px;
 		left: 2px;
 		bottom: 2px;
 		background-color: white;
-		transition: .4s;
+		transition: 0.4s;
 		border-radius: 50%;
 	}
 
 	input:checked + .slider {
-		background-color: #2196F3;
+		background-color: #2196f3;
 	}
 
 	input:checked + .slider:before {
@@ -57,10 +64,3 @@
 		border-radius: 50%;
 	}
 </style>
-
-{label}
-
-<label class="switch">
-	<input type="checkbox" bind:checked={isChecked} />
-	<span class="slider round"></span>
-</label>

@@ -1,12 +1,12 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 0px;
-    margin: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	padding: 0px;
+	margin: 0px;
 }
 
 .swapButton {
-    width: 100%;
-    border-radius: 10px;
-    background-color: #111144;
-    color: white;
+	width: 100%;
+	border-radius: 10px;
+	background-color: #111144;
+	color: white;
 }
