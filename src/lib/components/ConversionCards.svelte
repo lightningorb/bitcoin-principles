@@ -1,15 +1,12 @@
 <script lang='ts'>
+    import ConversionCard from "./ConversionCard.svelte";
     export let amounts;
     export let USDPHP;
     export let BTCUSD;
+    export let selectedAmount = 0;
 </script>
 
 {#each amounts as amount}
-
-<div style="background-color: lightblue; border-radius: 10px; padding: 10px; max-width: 200px;">
-    <p>GCash {amount}PHP</p>
-    <p>{Math.round(amount / USDPHP / BTCUSD * 1e8).toLocaleString()} sats</p>
-</div>
-<br/>
-
+    <ConversionCard amount={amount} USDPHP={USDPHP} BTCUSD={BTCUSD} bind:selectedAmount={selectedAmount}/>
+    <br/>
 {/each}
