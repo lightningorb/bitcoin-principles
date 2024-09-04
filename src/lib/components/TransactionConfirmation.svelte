@@ -1,24 +1,76 @@
 <script lang="ts">
+	import Wallet from '$lib/components/Wallet.svelte';
 	import Checkbox from './Checkbox.svelte';
-	export let phoneNumber: string = '';
+
+    export let phoneNumber: string = '';
+	export let selectedAmount: number | never = 0;
+	export let BTCUSD: number;
+	export let USDPHP: number;
+
+    let feePercentage = 0.08;
+
+    $: subTotal = isChecked ? Math.round(selectedAmount / USDPHP / BTCUSD * 1e8) : selectedAmount;
+    $: fee = subTotal * feePercentage;
+    $: total = subTotal + fee;
+    $: currency = isChecked ? 'sats' : 'PHP';
+
+    let isChecked = false;
 </script>
 
-<h2>Confirm Transaction</h2>
-<div><Checkbox label={'PHP'} /></div>
+<table width="100%">
+    <tr>
+        <td>
+            <h2>Confirm Transaction <Wallet /></h2>
+        </td>
+        <td>
+            <span style="float: right;"><Checkbox bind:isChecked={isChecked} label={'PHP'} /></span>
+        </td>
+    </tr>
+</table>
 <br />
 
 <div class="card">
 	<p>Send to GCash</p>
-	<h4>{phoneNumber}</h4>
+	<h2 style='color: #666;'>{phoneNumber}</h2>
 </div>
 <br />
 
-sub total IDR blah Biaya + IDR fee? Total IDR blah Lanjutkan Pembayaran
+<table width="100%">
+    <tr>
+        <td>
+            <h2 style="margin: 5px 0;">Sub Total</h2>
+        </td>
+        <td>
+            <span style="float: right;">{subTotal.toLocaleString() + ' ' + currency}</span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h2 style="margin: 5px 0;">Cost</h2>
+        </td>
+        <td>
+            <span style="float: right;">{fee.toLocaleString() + ' ' + currency}</span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h2 style="margin: 5px 0;">Total</h2>
+        </td>
+        <td>
+            <span style="float: right;">{total.toLocaleString() + ' ' + currency}</span>
+        </td>
+    </tr>
+</table>
+
+<br/>
+
+<button class="swapButton">
+    <h2>Confirm Transaction</h2>
+</button>
 
 <style>
 	.card {
 		background-color: #f3f3f3;
-		height: 80px;
 		padding: 10px;
 		border-radius: 13px;
 	}

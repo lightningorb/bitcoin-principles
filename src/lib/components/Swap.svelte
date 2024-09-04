@@ -15,7 +15,7 @@
 	{#if swapClicked}
 		<div class="background" on:click={handleBackgroundClick}></div>
 		<div class="slidingSection" transition:slide>
-			<TransactionConfirmation {phoneNumber} />
+			<TransactionConfirmation {selectedAmount} {BTCUSD} {USDPHP} {phoneNumber} />
 		</div>
 	{/if}
 	<button class="swapButton" on:click={() => (swapClicked = true)}>
@@ -29,7 +29,7 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
-		height: 400px;
+		height: 500px;
 		background-color: white;
 		z-index: 2;
 		padding: 20px;
