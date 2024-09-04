@@ -6,7 +6,17 @@
     export let selectedAmount = 0;
 </script>
 
-{#each amounts as amount}
-    <ConversionCard amount={amount} USDPHP={USDPHP} BTCUSD={BTCUSD} bind:selectedAmount={selectedAmount}/>
-    <br/>
-{/each}
+<div class="conversion-grid">
+    {#each amounts as amount}
+        <ConversionCard amount={amount} USDPHP={USDPHP} BTCUSD={BTCUSD} bind:selectedAmount={selectedAmount}/>
+    {/each}
+</div>
+
+<style>
+    .conversion-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+</style>

@@ -3,16 +3,19 @@
     import Wallet from '$lib/components/Wallet.svelte';
     import ConversionCards from '$lib/components/ConversionCards.svelte'
     import RateFetcher from '$lib/components/RateFetcher.svelte';
+    import Swap from '$lib/components/Swap.svelte';
+    import PhoneNumber from '$lib/components/PhoneNumber.svelte';
     import { BTCUSD } from '$lib/stores';
 
     import '$lib/global.css';
 
-    let selectedAmount = 0;
-    let amounts = [500, 1000, 3000, 5000];
-    let USDPHP = 56;
-    let successes = 300;
-    let failures = 30;
-    let refunds = 1;
+    let selectedAmount: number | never = 0;
+    let amounts: number[] = [500, 1000, 3000, 5000];
+    let USDPHP: number = 56;
+    let successes: number = 300;
+    let failures: number = 30;
+    let refunds: number = 1;
+    let phoneNumber: string = '';
 </script>
 
 <RateFetcher/>
@@ -20,8 +23,9 @@
 <h1 class='banner'><span class='lightning'>Lightning</span> to <span class='gcash'>GCash <Wallet/> </span></h1>
 
 <div style='margin: 10px;'>
-    <p><b>Phone number</b></p>
-    <input type='text' placeholder='09xxxxxxxxx'/>
+    <PhoneNumber bind:phoneNumber/>
+
+    {#if phoneNumber}
 
     <p><b>Amount:</b> <span style='float: right; color: #bbb;'>*Fees are already included.</span></p>
 
@@ -33,7 +37,9 @@
         1 BTC = {($BTCUSD * USDPHP).toLocaleString()} PHP (1 minute ago). A total of {successes} successes, {failures} by canceled by the user, and {refunds} refunded transactions.
     </p>
 
-    {selectedAmount}
+    {#if selectedAmount}
+        <Swap BTCUSD={$BTCUSD} {USDPHP} {selectedAmount} {phoneNumber}/>
+    {/if}
 
     {:else}
 
@@ -41,6 +47,7 @@
         Fetching exchange rates.
     </p>
 
+    {/if}
     {/if}
 </div>
 
