@@ -9,7 +9,6 @@
 	function validatePhoneNumber() {
 		errorMessage = '';
 
-		console.log(unvalidatedPhoneNumber.length);
 		if (unvalidatedPhoneNumber.length !== 11) {
 			errorMessage = 'Phone number incomplete.';
 			return false;
@@ -24,7 +23,6 @@
 
 	onMount(() => {
 		if (browser && localStorage.getItem('phoneNumber')) {
-			console.log('Reading phone number from local storage');
 			phoneNumber = localStorage.getItem('phoneNumber') || '';
 			unvalidatedPhoneNumber = phoneNumber;
 		}
@@ -37,7 +35,6 @@
 			phoneNumber = '';
 		}
 		if (browser && phoneNumber) {
-			console.log('Writing phone number to local storage', phoneNumber);
 			localStorage.setItem('phoneNumber', phoneNumber);
 		}
 	}

@@ -6,13 +6,13 @@
 	const storageKey = 'btcUsdRate';
 	const maxAge = 60000;
 
-	onMount(() => {
+	let getData = () => {
 		const savedData = localStorage.getItem(storageKey);
 		if (savedData) {
 			const parsedData = JSON.parse(savedData);
 			const currentTime = new Date().getTime();
 			if (currentTime - parsedData.timestamp < maxAge) {
-				updateBtcUsdRate(parsedData.value);
+				updateBtcUsdRate(parsedData.value, parsedData.timestamp);
 				console.log(`Using cached value: 1 BTC = ${parsedData.value} USD`);
 				return;
 			}
@@ -21,16 +21,22 @@
 			.then((response) => response.json())
 			.then((data) => {
 				const btcUsdRateValue = data.bitcoin.usd;
-				updateBtcUsdRate(btcUsdRateValue);
+				const currentTime = new Date().getTime();
+				updateBtcUsdRate(btcUsdRateValue, currentTime);
 				console.log(`Fetched from API: 1 BTC = ${btcUsdRateValue} USD`);
 				const newData = {
 					value: btcUsdRateValue,
-					timestamp: new Date().getTime()
+					timestamp: currentTime
 				};
 				localStorage.setItem(storageKey, JSON.stringify(newData));
 			})
 			.catch((error) => {
 				console.error('Error fetching BTC/USD rate:', error);
 			});
+	};
+
+	onMount(() => {
+		getData();
+		setInterval(getData, 61 * 1000);
 	});
 </script>
