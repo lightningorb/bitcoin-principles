@@ -5,8 +5,9 @@
 	export let BTCUSD: number;
 	$: active = selectedAmount == amount;
 
-	let commonTransform = 'translateX(60px) translateY(50px) rotateZ(-20deg) rotateX(55deg) skewX(10deg)';
-	
+	let commonTransform =
+		'translateX(60px) translateY(50px) rotateZ(-20deg) rotateX(55deg) skewX(10deg)';
+
 	let notes: string[] = [];
 	let thousands = Math.floor(amount / 1000);
 	let remainder = amount % 1000;
@@ -33,8 +34,8 @@
 	<p style="margin: 0;">{Math.round((amount / USDPHP / BTCUSD) * 1e8).toLocaleString()} sats</p>
 
 	{#each notes as note, index}
-		<div 
-			class="note" 
+		<div
+			class="note"
 			style="
 				background-image: url('/{note}');
 				transform: {commonTransform} 
@@ -73,7 +74,8 @@
 		transform-origin: center;
 	}
 
-	h2, p {
+	h2,
+	p {
 		margin: 0;
 	}
 </style>

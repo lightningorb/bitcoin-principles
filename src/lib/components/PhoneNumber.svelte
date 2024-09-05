@@ -9,7 +9,7 @@
 	function validatePhoneNumber() {
 		errorMessage = '';
 
-		console.log(unvalidatedPhoneNumber.length)
+		console.log(unvalidatedPhoneNumber.length);
 		if (unvalidatedPhoneNumber.length !== 11) {
 			errorMessage = 'Phone number incomplete.';
 			return false;

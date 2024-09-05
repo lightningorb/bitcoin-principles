@@ -17,7 +17,7 @@
 	let phoneNumber: string = '';
 </script>
 
-<Banner/>
+<Banner />
 
 <RateFetcher />
 
