@@ -9,19 +9,13 @@
 	function validatePhoneNumber() {
 		errorMessage = '';
 
-		if (unvalidatedPhoneNumber.length !== 13) {
+		console.log(unvalidatedPhoneNumber.length)
+		if (unvalidatedPhoneNumber.length !== 11) {
 			errorMessage = 'Phone number incomplete.';
 			return false;
 		}
-
-		if (!unvalidatedPhoneNumber.startsWith('+63')) {
-			errorMessage = 'Phone number must start with +63.';
-			return false;
-		}
-
-		const numberPart = unvalidatedPhoneNumber.slice(3);
-		if (!/^\d+$/.test(numberPart)) {
-			errorMessage = 'Phone number must contain only digits after +63.';
+		if (!/^\d+$/.test(unvalidatedPhoneNumber)) {
+			errorMessage = 'Phone number must contain only digits';
 			return false;
 		}
 

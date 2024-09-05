@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Wallet from '$lib/components/Wallet.svelte';
+	import Banner from '$lib/components/Banner.svelte';
 	import ConversionCards from '$lib/components/ConversionCards.svelte';
 	import RateFetcher from '$lib/components/RateFetcher.svelte';
 	import Swap from '$lib/components/Swap.svelte';
@@ -17,11 +17,9 @@
 	let phoneNumber: string = '';
 </script>
 
-<RateFetcher />
+<Banner/>
 
-<h1 class="banner">
-	<span class="lightning">Lightning</span> to <span class="gcash">GCash <Wallet /> </span>
-</h1>
+<RateFetcher />
 
 <div style="margin: 10px;">
 	<PhoneNumber bind:phoneNumber />
@@ -47,18 +45,3 @@
 		{/if}
 	{/if}
 </div>
-
-<style>
-	.banner {
-		background-color: #ededed;
-		margin: 0px;
-		padding: 5px;
-		font-size: 1.3em;
-	}
-	.lightning {
-		color: orange;
-	}
-	.gcash {
-		color: blue;
-	}
-</style>
