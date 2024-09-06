@@ -31,13 +31,13 @@
 	}}
 >
 	<h2 style="margin: 0;">GCash {amount}PHP</h2>
-	<p style="margin: 0;">{Math.round((amount / USDPHP / BTCUSD) * 1e8).toLocaleString()} sats</p>
+	<p style="margin: 0;">{Math.round(((amount * USDPHP) / BTCUSD) * 1e8).toLocaleString()} sats</p>
 
 	{#each notes as note, index}
 		<div
 			class="note"
 			style="
-				background-image: url('/{note}');
+				background-image: url('./{note}');
 				transform: {commonTransform} 
 				{active && index === notes.length - 1 ? 'translateY(-10px)' : ''}
 				translateY({index * -2}px);

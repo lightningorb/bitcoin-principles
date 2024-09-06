@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { updateUSDPHPRate } from '$lib/stores';
 
-	const usdPhpApiUrl = 'http://www.floatrates.com/daily/php.json';
+	const usdPhpApiUrl = 'https://www.floatrates.com/daily/php.json';
 	const usdPhpStorageKey = 'usdPhpRate';
 	const maxAge = 60000;
 

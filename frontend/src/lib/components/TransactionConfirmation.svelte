@@ -9,7 +9,7 @@
 
 	let feePercentage = 0.08;
 
-	$: subTotal = isChecked ? Math.round((selectedAmount / USDPHP / BTCUSD) * 1e8) : selectedAmount;
+	$: subTotal = isChecked ? Math.round(((selectedAmount * USDPHP) / BTCUSD) * 1e8) : selectedAmount;
 	$: fee = subTotal * feePercentage;
 	$: total = subTotal + fee;
 	$: currency = isChecked ? 'sats' : 'PHP';

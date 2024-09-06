@@ -11,7 +11,7 @@
 		"test": "vitest",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
-		"deploy": "aws s3 cp build s3://bitcoin-principles/ --recursive"
+		"deploy": "aws s3 rm s3://bitcoin-principles/ --recursive && aws s3 cp build s3://bitcoin-principles/bitcoin-principles/ --recursive"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
