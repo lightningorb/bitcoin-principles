@@ -6,6 +6,7 @@
 	import USDPHPRateFetcher from '$lib/components/USDPHPRateFetcher.svelte';
 	import Swap from '$lib/components/Swap.svelte';
 	import PhoneNumber from '$lib/components/PhoneNumber.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 	import { BTCUSD, BTCUSD_age, USDPHP, USDPHP_age } from '$lib/stores';
 
 	import '$lib/global.css';
@@ -58,3 +59,5 @@
 		{/if}
 	{/if}
 </div>
+
+<Footer/>

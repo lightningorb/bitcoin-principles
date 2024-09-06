@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Wallet from '$lib/components/Wallet.svelte';
 	import Checkbox from './Checkbox.svelte';
+	import ConfirmTransaction from './ConfirmTransaction.svelte';
 
 	export let phoneNumber: string = '';
 	export let selectedAmount: number | never = 0;
@@ -9,7 +10,11 @@
 
 	let feePercentage = 0.08;
 
-	$: subTotal = isChecked ? Math.round(((selectedAmount * USDPHP) / BTCUSD) * 1e8) : selectedAmount;
+	$: subTotalSats = Math.round(((selectedAmount * USDPHP) / BTCUSD) * 1e8)
+	$: feeSats = subTotalSats * feePercentage;
+	$: totalSats = subTotalSats + feeSats;
+
+	$: subTotal = isChecked ? subTotalSats : selectedAmount;
 	$: fee = subTotal * feePercentage;
 	$: total = subTotal + fee;
 	$: currency = isChecked ? 'sats' : 'PHP';
@@ -64,9 +69,7 @@
 
 <br />
 
-<button class="swapButton">
-	<h2>Confirm Transaction</h2>
-</button>
+<ConfirmTransaction {totalSats}/>
 
 <style>
 	.card {
