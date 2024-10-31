@@ -5,6 +5,7 @@
 	let properties = [];
 	let methods = [];
     let info = '';
+	let balance = 0;
 
 	let webln: any = null;
 
@@ -17,6 +18,7 @@
 			const proto = Object.getPrototypeOf(webln);
 			methods = Object.getOwnPropertyNames(proto).filter((key) => typeof webln[key] === 'function');
             info = await webln.getInfo();
+			balance = await webln.getBalance();
 		} catch (err) {
 			console.error('WebLN not available:', err);
 		}
@@ -43,4 +45,10 @@
 
 <pre>
 {JSON.stringify(info, null, 2)}
+</pre>
+
+<h2>Balance</h2>
+
+<pre>
+	{JSON.stringify(balance)}
 </pre>
